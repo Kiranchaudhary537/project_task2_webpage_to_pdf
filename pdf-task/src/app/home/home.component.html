@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="form-group">
+        <h2>Download Webpage as PDF</h2>
+        <form class="form" #downloadForm="ngForm" (ngSubmit)="onSubmit(downloadForm)">
+            <input type="text" id="url" name="url" placeholder="Enter URL Here.." [(ngModel)]="url" required> <button
+                type="submit" [disabled]="isDownloading">Submit</button>
+        </form>
+        <div id="line"></div>
+        <div class="loading" *ngIf="isDownloading">Downloading...</div>
+        <button type="button" (click)="downloadFile()" *ngIf="isDownloaded">Download</button>
+    </div>
+</div>
