@@ -9,9 +9,9 @@ export class FileDownloadService {
 
   constructor(private http: HttpClient,private pdfGeneratorService:PdfGeneratorService ) { }
 
-  downloadFile(url: string): Promise<any> {
+  async downloadFile(url: string): Promise<any> {
     console.log("on downloadfiles");
     // return this.pdfGeneratorService.generatePdf(url);
-    return this.http.post<Blob>('http://localhost:5000/download', { url }, { responseType: 'blob' as 'json' }).toPromise();
+    return await this.http.post<Blob>('http://localhost:5000/download', { url }, { responseType: 'blob' as 'json' }).toPromise();
   }
 }

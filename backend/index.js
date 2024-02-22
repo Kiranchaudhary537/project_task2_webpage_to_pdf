@@ -14,36 +14,7 @@ app.use(
     })
 );
 
-const waitTillHTMLRendered = async (page, timeout = 30000) => {
-    const checkDurationMsecs = 1000;
-    const maxChecks = timeout / checkDurationMsecs;
-    let lastHTMLSize = 0;
-    let checkCounts = 1;
-    let countStableSizeIterations = 0;
-    const minStableSizeIterations = 3;
 
-    while (checkCounts++ <= maxChecks) {
-        let html = await page.content();
-        let currentHTMLSize = html.length;
-
-        let bodyHTMLSize = await page.evaluate(() => document.body.innerHTML.length);
-
-        console.log('last: ', lastHTMLSize, ' <> curr: ', currentHTMLSize, " body html size: ", bodyHTMLSize);
-
-        if (lastHTMLSize != 0 && currentHTMLSize == lastHTMLSize)
-            countStableSizeIterations++;
-        else
-            countStableSizeIterations = 0; //reset the counter
-
-        if (countStableSizeIterations >= minStableSizeIterations) {
-            console.log("Page rendered fully..");
-            break;
-        }
-
-        lastHTMLSize = currentHTMLSize;
-        // await page.waitFor(checkDurationMsecs);
-    }
-};
 
 
 app.post("/download", async (req, res) => {
@@ -54,12 +25,10 @@ app.post("/download", async (req, res) => {
     const { url } = req.body;
 
     await page.goto(url, { 'timeout': 10000, 'waitUntil': 'networkidle2' });
-    // await waitTillHTMLRendered(page)
-    page.waitForResponse()
-    //To reflect CSS used for screens instead of print
+
     await page.emulateMediaType("screen");
 
-    const pdf = await page.pdf({ printBackground: true });
+    const pdf = await page.pdf({'timeout': 2000, printBackground: true });
 
     await browser.close();
 

@@ -1,12 +1,17 @@
 <div class="container">
     <div class="form-group">
         <h2>Download Webpage as PDF</h2>
-        <form class="form" #downloadForm="ngForm" (ngSubmit)="onSubmit(downloadForm)">
+        <form class="form" (ngSubmit)="onSubmit()">
             <input type="text" id="url" name="url" placeholder="Enter URL Here.." [(ngModel)]="url" required> <button
-                type="submit" [disabled]="isDownloading">Submit</button>
+                type="submit" [disabled]="isDownloading">Generate PDF</button>
         </form>
+        <p *ngIf="error" class="error">{{ error }}</p>
         <div id="line"></div>
-        <div class="loading" *ngIf="isDownloading">Downloading...</div>
+        <div class="Loading" *ngIf="isDownloading">
+            <div class="loader"></div>
+            <p class="loader-text">Please wait....</p>
+        </div>
         <button type="button" (click)="downloadFile()" *ngIf="isDownloaded">Download</button>
     </div>
+
 </div>
