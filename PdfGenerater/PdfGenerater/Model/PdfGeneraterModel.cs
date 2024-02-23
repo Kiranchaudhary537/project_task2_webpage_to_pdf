@@ -1,4 +1,4 @@
-﻿namespace PdfGenerater
+﻿namespace PdfGenerater.Model
 {
     public class PdfGeneraterModel
     {

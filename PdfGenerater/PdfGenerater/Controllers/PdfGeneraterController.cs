@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PdfGenerater;
+using PdfGenerater.Model;
 using PuppeteerSharp;
 using PuppeteerSharp.Media;
 using System;
