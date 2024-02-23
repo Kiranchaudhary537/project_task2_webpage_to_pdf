@@ -7,6 +7,7 @@ export class FileDownloadService {
 
   constructor(private http: HttpClient) { }
 
+  //generate file using .net as backend
   async downloadFile(url: string): Promise<any> {
     console.log("on downloadfiles");
     try {

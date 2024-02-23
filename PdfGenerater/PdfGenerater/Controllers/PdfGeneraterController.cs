@@ -58,6 +58,7 @@ namespace PdfGenerator.Controllers
 
             try
             {
+                // return response in blob
                 var pdfBytes = await GeneratePdfFromUrl(model.url);
                 var memoryStream = new MemoryStream(pdfBytes);
                 return File(memoryStream, "application/pdf", "generated.pdf");

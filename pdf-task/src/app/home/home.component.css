@@ -47,6 +47,15 @@ button:hover {
     background: linear-gradient(45deg, greenyellow, dodgerblue);
 }
 
+/* Button style specifically when it's disabled */
+button[type="submit"][disabled] {
+    background-color: gray;
+    border-color: gray;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 /* Dashed line */
 #line {
     border-top: 1px dashed black;

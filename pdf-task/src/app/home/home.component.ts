@@ -52,7 +52,6 @@ export class HomeComponent {
       this.isDownloaded = false;
       this.error = null;
 
-      // const response = await this.pdfGeneratorService.generatePDF(this.url);
       const response = await this.fileDownloadService.downloadFile(this.url);
       console.log(response);
       this.generatedFile = response;
@@ -67,16 +66,8 @@ export class HomeComponent {
     }
   }
 
-  // Function to download the generated file
-  // downloadFile() {
-  //   const a = document.createElement('a');
-  //   a.href = this.generatedFile.files[0].Url;
-  //   a.download = this.generatedFile.files[0].FileName;
-  //   document.body.appendChild(a);
-  //   a.click();
-  //   // Clean up
-  //   document.body.removeChild(a);
-  // }
+
+  //Function to donwload the generated file
   downloadFile() {
     const url = window.URL.createObjectURL(this.generatedFile);
     const a = document.createElement('a');
