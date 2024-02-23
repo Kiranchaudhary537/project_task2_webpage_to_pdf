@@ -13,7 +13,10 @@ export class PdfGeneratorService {
     try {
       let convertApi = ConvertApi.auth('YHbqWj5f4Z5vGebu');
       let params = convertApi.createParams();
+      //conversiondelay so page can load
       params.add('Url', url);
+      params.add('ConversionDelay',"2");
+      params.add('LoadLazyContent',"true");
       let result = await convertApi.convert('web', 'pdf', params);
       return result;
     } catch (error) {

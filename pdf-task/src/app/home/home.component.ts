@@ -52,13 +52,15 @@ export class HomeComponent {
       this.isDownloaded = false;
       this.error = null;
 
-      const response = await this.fileDownloadService.downloadFile(this.url);
-      console.log(response);
+      const response = await this.pdfGeneratorService.generatePDF(this.url);
+      
+      // used for .net backend
+      // const response = await this.fileDownloadService.downloadFile(this.url);
       this.generatedFile = response;
       this.isDownloaded = true;
 
     } catch (error: any) {
-      this.error = 'An error while generating the PDF and error is: ' + error.Message != '' ? error.message : error.Message;
+      this.error = 'An error while generating the PDF and error is: ' + error.Message;
       console.error('Error generating file:', error);
 
     } finally {
@@ -69,13 +71,24 @@ export class HomeComponent {
 
   //Function to donwload the generated file
   downloadFile() {
-    const url = window.URL.createObjectURL(this.generatedFile);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = 'downloaded_file';
+    a.href = this.generatedFile.files[0].Url;
+    a.download = this.generatedFile.files[0].FileName;
     document.body.appendChild(a);
     a.click();
-    window.URL.revokeObjectURL(url);
+    // Clean up
+    document.body.removeChild(a);
   }
+
+  //this function used with .net as backend 
+  // downloadFile() {
+  //   const url = window.URL.createObjectURL(this.generatedFile);
+  //   const a = document.createElement('a');
+  //   a.href = url;
+  //   a.download = 'downloaded_file';
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   window.URL.revokeObjectURL(url);
+  // }
 }
 
