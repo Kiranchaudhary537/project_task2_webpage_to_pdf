@@ -1,3 +1,4 @@
+/* Flex box */
 .container {
     display: flex;
     align-items: center;
@@ -9,6 +10,7 @@
 
 }
 
+/* Form style */
 .form-group {
     background: #fff;
     border-radius: 10px;
@@ -21,6 +23,7 @@
     flex-direction: column;
 }
 
+/* Label,button,input style */
 label,
 button,
 input {
@@ -31,6 +34,7 @@ input {
     border-radius: 5px;
 }
 
+/* Button style */
 button {
     width: 50%;
     display: inline-block;
@@ -43,14 +47,17 @@ button:hover {
     background: linear-gradient(45deg, greenyellow, dodgerblue);
 }
 
+/* Dashed line */
 #line {
     border-top: 1px dashed black;
 }
 
+/* Error */
 .error {
     color: red;
 }
 
+/* Loading message */
 .Loading {
     margin-top: 10px;
 }

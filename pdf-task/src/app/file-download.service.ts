@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { PdfGeneratorService } from './pdf-generator.service';
 @Injectable({
   providedIn: 'root'
 })
 export class FileDownloadService {
 
-  constructor(private http: HttpClient,private pdfGeneratorService:PdfGeneratorService ) { }
+  constructor(private http: HttpClient) { }
 
   async downloadFile(url: string): Promise<any> {
     console.log("on downloadfiles");
-    // return this.pdfGeneratorService.generatePdf(url);
-    return await this.http.post<Blob>('http://localhost:5000/download', { url }, { responseType: 'blob' as 'json' }).toPromise();
+    try {
+      const response = await this.http.post<Blob>('https://localhost:7055/generatepdf', { url }, { responseType: 'blob' as 'json' }).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      throw error; // Rethrow the error to be caught by the caller
+    }
   }
 }
