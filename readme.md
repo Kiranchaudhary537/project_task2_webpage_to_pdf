@@ -1,5 +1,6 @@
-### here, angular as fronend and .net as backend.
-#### pdf-task contains code of angular (frontend)
-#### pdfgenerater contains code of .net (backend)
-
-#### Report directiory contains report pdf and video. 
+- pdf-task contains Angular as frontend and pdfgenerator contains .NET as backend.
+- Problem solved using two solutions:
+  - First solution involves using ConvertAPI library in Angular.
+  - Second solution involves using PuppeteerSharp in .NET.
+- Default solution is working with ConvertAPI, but you can also run .NET as backend with some changes in the code.
+- Steps are available in the code.
