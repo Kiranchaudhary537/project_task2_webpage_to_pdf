@@ -3,8 +3,13 @@
         <h2>Download Webpage as PDF</h2>
         <!-- Form -->
         <form class="form" (ngSubmit)="onSubmit()">
-            <input type="text" id="url" name="url" placeholder="Enter URL Here.." [(ngModel)]="url" required> <button
-                type="submit" [disabled]="isDownloading">Generate PDF</button>
+            <input type="text" id="url" name="url" placeholder="Enter URL Here.." [(ngModel)]="url" required>
+            <div class="radio-container">
+                <label>Speed:</label>
+                <input type="radio" name="speed" [(ngModel)]="conversionDelay" value="2"> Fast
+                <input type="radio" name="speed" [(ngModel)]="conversionDelay" value="3"> Optimal but slow
+            </div>
+            <button type="submit" [disabled]="isDownloading">Generate PDF</button>
         </form>
         <!-- Error message display -->
         <p *ngIf="error" class="error">{{ error }}</p>

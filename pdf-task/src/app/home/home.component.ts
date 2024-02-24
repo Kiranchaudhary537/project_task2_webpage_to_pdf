@@ -18,7 +18,14 @@ export class HomeComponent {
   isDownloaded: boolean = false;
   error: string | null = null;
   generatedFile: any = '';
+  conversionDelay: string = '2'; 
+
   constructor(private pdfGeneratorService: PdfGeneratorService, private fileDownloadService: FileDownloadService) { }
+  
+  // function to handle speed changes 
+  onSpeedChange(speed: string) {
+    this.conversionDelay = speed;
+  }
 
   // Function to validate URL format
   isValidUrl(url: string): string {
@@ -52,8 +59,8 @@ export class HomeComponent {
       this.isDownloaded = false;
       this.error = null;
 
-      const response = await this.pdfGeneratorService.generatePDF(this.url);
-      
+      const response = await this.pdfGeneratorService.generatePDF(this.url,this.conversionDelay);
+
       // used for .net backend
       // const response = await this.fileDownloadService.downloadFile(this.url);
       this.generatedFile = response;
@@ -70,6 +77,7 @@ export class HomeComponent {
 
 
   //Function to donwload the generated file
+  //function for convertapi
   downloadFile() {
     const a = document.createElement('a');
     a.href = this.generatedFile.files[0].Url;
